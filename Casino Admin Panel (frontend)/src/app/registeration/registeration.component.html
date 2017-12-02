@@ -1,0 +1,56 @@
+<div id="register" class="container">
+  <form #customerForm ="ngForm">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Name" id="name" required minlength="3" maxlength="30"  pattern="[a-zA-Z][a-zA-Z ]+" [(ngModel)]="user.name" name="name"
+             #name="ngModel" style="color: white">
+      <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger" style="height: 30px">
+        <div [hidden]="!name.errors.required">Name is required!</div>
+        <div [hidden]="!name.hasError('pattern')">Only alphabets allowed</div>
+        <div [hidden]="!name.errors.minlength">name must be at least 3 characters long.</div>
+        <div [hidden]="!name.errors.maxlength">name cannot be more than 30 characters long.</div>
+      </div>
+    </div>
+
+    <input type = "date" class = "datepicker" style="color: white" [(ngModel)]="user.dateOfBirth" name="dateOfBirth" />
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Contact Number" id="contactNumber" required pattern="\d{10}"
+             [(ngModel)]="user.contactNumber" name="contactNumber" #contactNumber="ngModel" style="color: white">
+      <div *ngIf="contactNumber.errors && (contactNumber.dirty || contactNumber.touched)" class="alert alert-danger">
+        <div [hidden]="!contactNumber.errors.required">
+          Contact Number is required!
+        </div>
+        <div [hidden]="!contactNumber.errors.pattern">
+          contact number must be of 10 digits.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" class="form-control"  placeholder="Email" id="emailaddress"
+               required
+               [(ngModel)]="user.email" name="email"
+               pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+               #email="ngModel" style="color: white">
+        <div [hidden]="email.valid || email.pristine"
+             class="alert alert-danger">
+          <div [hidden]="!email.hasError('required')">Email is required</div>
+          <div [hidden]="!email.hasError('pattern')">Email format should be
+            <small><b>joe@abc.com</b></small>
+          </div>
+        </div>
+    </div>
+    <div class="file-field input-field">
+      <div class="btn" id="uploadImage">
+        <span>Identity Proof </span>
+        <input type="file">
+      </div>
+      <div class="file-path-wrapper">
+        <input id='image' class="file-path validate" type="text">
+      </div>
+    </div>
+
+    <input  id="submitbutton" class="btn" type="button" value="Register" (click)="register(user)"
+            [disabled]="!customerForm.form.valid">
+
+  </form>
+</div>

@@ -1,0 +1,25 @@
+#register {
+  background-color: rgba(0,0,0,.7);
+  height:600px;
+  padding: 40px;
+  max-width:600px;
+  margin:40px auto;
+  border-radius:4px;
+  box-shadow:0 4px 10px 4px rgba(193, 189, 186,.3);
+}
+
+#uploadImage{
+  background-color: black;
+  width: 100px;
+  padding: 2px;
+  font-size: 10px
+}
+
+#submitbutton{
+  background-color:black;
+  margin-top: 40px;
+  padding:5px;
+  width: 30%;
+  height:40px;
+  float: right
+}
